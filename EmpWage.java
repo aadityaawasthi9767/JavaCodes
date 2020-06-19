@@ -1,8 +1,9 @@
+import java.util.Scanner;
 import java.util.Random;
 //import java.util.String;
 public class EmpWage
 {
-public static int[] WageRecords=new int[20];
+public static int[] WageRecords=new int[19];
 public static final int IS_FULL_TIME=1;
 public static final int IS_HALF_TIME=2;
 public static String comName;
@@ -47,7 +48,7 @@ public static int empRate,numofDays,MaxHoursMonth;
 			System.out.println("Day "+totalWorkingDays+ "Emp Hr: "+empHrs);
 		}
 		int totalEmpWage=totalEmpHrs*empRate;
-		for(int i=0;i<19;i++)
+		for(int i=0;i<99;i++)
 			{
 				int counter=0;
 				WageRecords[counter]=totalEmpWage;
@@ -71,15 +72,35 @@ return totalEmpWage;
 
 public static void main(String args[])
 {
+//EmpWage emp1 = new EmpWage();
+//EmpWage emp2= new EmpWage();
 System.out.println("Welcome to Employee Wage Program in JAVA");
-EmpWage emp1= new EmpWage("DMart",20,20,100);
-EmpWage emp2= new EmpWage("AllFreash",50,25,200);
-//System.out.println("Welcome to Employee Wage Program in JAVA");
+Scanner sc= new Scanner(System.in);
+System.out.println("Enter Number of companies");
+int numofCompanies=sc.nextInt();
 
-emp1.DailyWage("DMart",20,20,100);
-emp2.DailyWage("AllFresh",50,25,200);
+for(int j=0;j<numofCompanies;j++){
+	System.out.println("Enter Company name");
+	comName=sc.next();
+
+	System.out.println("Enter Employee Rate per Hour");
+	empRate=sc.nextInt();
+
+	System.out.println("Enter Maximum number Working Days");
+	numofDays=sc.nextInt();
+
+	System.out.println("Enter Maximum number of Working Hours in a Month");
+	MaxHoursMonth=sc.nextInt();
+	}
+EmpWage emp1 = new EmpWage(comName,empRate,numofDays,MaxHoursMonth);
+emp1.DailyWage(comName,empRate,numofDays,MaxHoursMonth);
+//EmpWage emp2 = new EmpWage(comName,empRate,numofDays,MaxHoursMonth);
+//System.out.println("Welcome to Employee Wage Program in JAVA");
+}
+//emp[x].DailyWage(comName,empRate,numofDays,MaxHoursMonth);
+//emp[x].DailyWage(comName,empRate,numofDays,MaxHoursMonth);
 //emp1.displayEmpWage();
 //emp2.displayEmpWage();
 }
 
-}
+
