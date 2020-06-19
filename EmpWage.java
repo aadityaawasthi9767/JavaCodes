@@ -2,76 +2,45 @@ import java.util.Random;
 
 public class EmpWage
 {
-public static int[] WageRecords=new int[20];
-public int counter=0;
-public static int sum=0,DWage=0;
-public static int Max_number_Days=20;
-public static int Max_Hrs=100;
-public static int numDays=0;
-public static int HrsperDay=0;
-public static int empCheck, WageperHr=20, Fullday=8, Halfday=4;
+public static final int IS_FULL_TIME=1;
+public static final int IS_HALF_TIME=2;
 
+	int DailyWage(String comName, int empRate, int numOfDays, int maxHoursMonth){
 
+		int empHrs=0,totalWorkingDays=0,totalEmpHrs=0;
 
-	void DailyWage(){
+		while(totalEmpHrs<=maxHoursMonth && totalWorkingDays<numOfDays){
 
-     while(Max_number_Days>numDays && Max_Hrs>HrsperDay){
-
-		for(int i=0;i<Max_number_Days;i++)
-		{
+			totalWorkingDays++;
 			Random ran = new Random();
-			empCheck = ran.nextInt(3);
+			int empCheck = ran.nextInt(3);
 
 	   	switch(empCheck)
    		{
+      	case IS_FULL_TIME:
+						empHrs=8;
+         break;
+
+      	case IS_HALF_TIME:
+						empHrs=4;
+         break;
+
       	case 0:
-					 //int DWage=0;
-            numDays++;
-            DWage=Fullday*WageperHr;
-            WageRecords[counter]=DWage;
-            counter++;
-
-         	//emp.DailyWage(Fullday,WageperHr);
-         	HrsperDay=HrsperDay+Fullday;
-         break;
-
-      	case 1:
-				 //int DWage=0;
-            numDays++;
-            DWage=Halfday*WageperHr;
-            WageRecords[counter]=DWage;
-            counter++;
-
-         	//emp.DailyWage(Halfday,WageperHr);
-         	HrsperDay=HrsperDay+Halfday;
-         break;
-
-      	case 2:
          	System.out.println("Absent! Sorry, NO WAGE TODAY.");
-         	//emp.DailyWage(0,WageperHr);
-				 //int DWage=0;
-            numDays++;
-            DWage=0*WageperHr;
-            WageRecords[counter]=DWage;
-            counter++;
-
-         	HrsperDay=HrsperDay+0;
+						empHrs=0;
          break;
    		default:
          	System.out.println("Not a Valid Entry!");
    		}
+			totalEmpHrs=totalEmpHrs+empHrs;
+			System.out.println("Day "+totalWorkingDays+ "Emp Hr: "+empHrs);
 		}
-
-
-				/*int DWage=0;
-				numDays++;				
-				DWage=a*b;
-				WageRecords[counter]=DWage;
-				counter++;*/
-		}
+		int totalEmpWage=totalEmpHrs*empRate;
+System.out.print("Total Emp Wage for company: " +comName+"="+totalEmpWage);
+return totalEmpWage;
 	}
 
-	void displayWage(){
+	/*void displayWage(){
 
 		for(int i=0;i<WageRecords.length;i++)
 		{
@@ -79,20 +48,16 @@ public static int empCheck, WageperHr=20, Fullday=8, Halfday=4;
 			sum=sum+WageRecords[i];
 		}
 			System.out.println("Monthy Salary: "+sum);
-	}
+	}*/
 
 
 public static void main(String args[])
 {
 
-//int empCheck, WageperHr=20, Fullday=8, Halfday=4,Max_Of_Days=20, numDays=0, Max_Hrs=100,HrsperDay=0;
-//float DWage=0;
 EmpWage emp= new EmpWage();
 System.out.println("Welcome to Employee Wage Program in JAVA");
 
-emp.DailyWage();
-//System.out.println(HrsperDay);
-emp.displayWage();
+emp.DailyWage("DMart",20,20,10);
+emp.DailyWage("AllFresh",50,25,20);
 }
-//System.out.println(""+HrsperDay);
 }
