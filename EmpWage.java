@@ -82,7 +82,6 @@ public static int empCheck, WageperHr=20, Fullday=8, Halfday=4;
 	}
 
 
-
 public static void main(String args[])
 {
 
